@@ -1,8 +1,8 @@
 # Sirui Zeng
 ## Information
 Xidian University, Xi'an, China  
-School of Computer Science And Technology, 710126  
+School of Computer Science and Technology, 710126  
 srzeng@stu.xidian.edu.cn  
 ## Research
-### Research Interests
-- natural language process, machine learning, data mining
+#### Research Interests
+-natural language processing, machine learning
