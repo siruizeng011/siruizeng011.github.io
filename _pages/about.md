@@ -19,7 +19,6 @@ The code is now open-source—feel free to use it! You can find the repository [
 
 Publications
 ======
-- *AgentOrca: A Dual-System Framework to Evaluate Language Agents on Operational Routine and Constraint Adherence* (**Under Review**, ACL 2025)
 - *Learning to Lie: Adversarial Attacks Driven by Reinforcement Learning Damage Human-AI Teams and LLMs* (**Accepted**, Workshop on ICLR 2025)
 
 
