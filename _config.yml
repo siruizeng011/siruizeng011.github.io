@@ -16,6 +16,8 @@ description              : &description "personal description"
 url                      : https://siruizeng011.github.io # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "siruizeng011/siruizeng011.github.io"
+cv_pdf                   : "files/cv.pdf" # path to CV PDF for masthead download link
+cv_download_name         : "Sirui_Zeng_CV.pdf" # filename when downloading
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
@@ -60,7 +62,7 @@ author:
   keybase          : # Username
   instagram        : # Username
   lastfm           : # Username
-  linkedin         : # Username
+  linkedin         : sirui-zeng-041a20320
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username

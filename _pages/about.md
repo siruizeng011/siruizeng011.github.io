@@ -9,7 +9,12 @@ redirect_from:
 
 About me
 ======
-I am a PhD student at the University of California, Santa Barbara, advised by [Prof. Xifeng Yan](https://sites.cs.ucsb.edu/~xyan/). I have extensive research experience in conversational AI and have participated in the development and research of intelligent customer service chatbots for several major companies. My research focuses on exploring the interaction between conversational AI and humans, as well as developing more effective and intelligent conversation systems.
+
+I am a Ph.D. student in Computer Science at the University of California, Santa Barbara, advised by Professor [Xifeng Yan](https://sites.cs.ucsb.edu/~xyan/). Before joining UCSB, I gained extensive research and development experience in conversational AI, contributing to intelligent customer service chatbot systems for leading companies such as UnionPay and SAIC Motor.
+
+My research focuses on human-centered conversational AI, with particular interests in LLM agents, agent evaluation, and agent debugging. More broadly, I aim to build reliable, effective, and trustworthy AI systems that can better collaborate with and assist people.
+
+<span class="text-accent">I am currently seeking internship and full-time opportunities. If you are interested in my research or would like to discuss potential collaborations, please feel free to get in touch!</span>
 
 Recent News
 ======
@@ -19,8 +24,8 @@ The code is now open-source—feel free to use it! You can find the repository [
 
 Publications
 ======
-- *Learning to Lie: Adversarial Attacks Driven by Reinforcement Learning Damage Human-AI Teams and LLMs* (**Accepted**, Workshop on ICLR 2025)
 
+{% include publications-list.html %}
 
 Teaching
 ======

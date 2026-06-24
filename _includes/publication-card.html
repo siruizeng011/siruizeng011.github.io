@@ -1,0 +1,140 @@
+{% include base_path %}
+
+{% assign pub = include.post %}
+{% assign pub_id = pub.path | replace: '/', '-' | replace: '.md', '' %}
+
+{% if pub.header.teaser %}
+  {% assign teaser = pub.header.teaser %}
+{% elsif pub.teaser %}
+  {% assign teaser = pub.teaser %}
+{% else %}
+  {% assign teaser = nil %}
+{% endif %}
+
+{% if teaser %}
+  {% if teaser contains '://' %}
+    {% assign teaser_url = teaser %}
+  {% elsif teaser contains 'files/' %}
+    {% assign teaser_url = teaser | prepend: '/' | prepend: base_path %}
+  {% else %}
+    {% assign teaser_url = teaser | prepend: '/images/' | prepend: base_path %}
+  {% endif %}
+  {% assign teaser_lower = teaser | downcase %}
+{% endif %}
+
+{% assign tldr = pub.tldr | default: pub.excerpt %}
+{% if pub.abstract %}
+  {% assign abstract = pub.abstract %}
+{% else %}
+  {% assign abstract = pub.content %}
+{% endif %}
+{% assign paper_link = pub.paperurl | default: pub.link %}
+
+{% if pub.id %}
+  {% assign title = pub.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = pub.title %}
+{% endif %}
+
+<article class="pub-card" itemscope itemtype="http://schema.org/ScholarlyArticle">
+  <div class="pub-card__media">
+    {% if teaser %}
+      {% if teaser_lower contains '.pdf' %}
+        <a
+          class="pub-card__media-link"
+          href="{{ teaser_url }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View full figure for {{ pub.title | strip_html | escape }}">
+          <div
+            class="pub-card__figure pub-card__figure--loading"
+            data-pdf-src="{{ teaser_url }}">
+            <canvas role="img" aria-label="{{ pub.title | strip_html | escape }} figure"></canvas>
+          </div>
+        </a>
+      {% else %}
+        <a
+          class="pub-card__media-link image-popup"
+          href="{{ teaser_url }}"
+          aria-label="View full image for {{ pub.title | strip_html | escape }}">
+          <img
+            class="pub-card__image"
+            src="{{ teaser_url }}"
+            alt="{{ pub.title | strip_html | escape }}"
+            loading="lazy">
+        </a>
+      {% endif %}
+    {% else %}
+      <div class="pub-card__image pub-card__image--placeholder" aria-hidden="true">
+        <i class="fa-solid fa-file-lines"></i>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="pub-card__body">
+    <h2 class="pub-card__title" itemprop="headline">{{ title }}</h2>
+
+    {% if pub.authors %}
+      <p class="pub-card__authors" itemprop="author">{{ pub.authors | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+    {% endif %}
+
+    {% if pub.venue or pub.date %}
+      <p class="pub-card__meta">
+        {% if pub.status %}<span class="pub-card__status">{{ pub.status }}</span>{% if pub.venue or pub.date %} · {% endif %}{% endif %}
+        {% if pub.venue %}<span itemprop="publisher"><i>{{ pub.venue }}</i></span>{% if pub.date %} · {% endif %}{% endif %}
+        {% if pub.date %}<time datetime="{{ pub.date | date_to_xmlschema }}" itemprop="datePublished">{{ pub.date | date: '%Y' }}</time>{% endif %}
+      </p>
+    {% endif %}
+
+    {% if paper_link or pub.posterurl or pub.slidesurl or pub.codeurl or pub.projecturl %}
+      <p class="pub-card__links">
+        {% if paper_link %}
+          <a class="btn btn--small" href="{{ paper_link }}" target="_blank" rel="noopener noreferrer" itemprop="url">
+            <i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Paper
+          </a>
+        {% endif %}
+        {% if pub.posterurl %}
+          <a class="btn btn--small btn--inverse" href="{{ pub.posterurl }}" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-image" aria-hidden="true"></i> Poster
+          </a>
+        {% endif %}
+        {% if pub.slidesurl %}
+          <a class="btn btn--small btn--inverse" href="{{ pub.slidesurl }}" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-display" aria-hidden="true"></i> Slides
+          </a>
+        {% endif %}
+        {% if pub.codeurl %}
+          <a class="btn btn--small btn--inverse" href="{{ pub.codeurl }}" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github" aria-hidden="true"></i> Code
+          </a>
+        {% endif %}
+        {% if pub.projecturl %}
+          <a class="btn btn--small btn--inverse" href="{{ pub.projecturl }}" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-link" aria-hidden="true"></i> Project
+          </a>
+        {% endif %}
+      </p>
+    {% endif %}
+
+    {% if tldr %}
+      <div class="pub-card__tldr">
+        <span class="pub-card__tldr-label">TL;DR</span>
+        <span class="pub-card__tldr-text" itemprop="description">{{ tldr | markdownify | remove: '<p>' | remove: '</p>' }}</span>
+      </div>
+    {% endif %}
+
+    {% assign abstract_stripped = abstract | strip_html | strip %}
+    {% if abstract_stripped != '' %}
+      <details class="pub-card__abstract">
+        <summary class="pub-card__abstract-toggle btn btn--small btn--inverse">
+          <span class="pub-card__abstract-label-show">Show Abstract</span>
+          <span class="pub-card__abstract-label-hide">Hide Abstract</span>
+          <i class="fa-solid fa-chevron-down pub-card__abstract-icon" aria-hidden="true"></i>
+        </summary>
+        <div class="pub-card__abstract-content" itemprop="abstract">
+          {{ abstract | markdownify }}
+        </div>
+      </details>
+    {% endif %}
+  </div>
+</article>

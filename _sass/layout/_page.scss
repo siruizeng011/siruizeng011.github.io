@@ -6,8 +6,8 @@
   @include container;
   @include clearfix;
   margin-top: 2em;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
   animation: intro 0.3s both;
   animation-delay: 0.35s;
 
@@ -19,8 +19,8 @@
 .page {
   @include breakpoint($large) {
     @include span(10 of 12 last);
-    @include prefix(0.5 of 12);
-    @include suffix(2 of 12);
+    @include prefix(0.25 of 12);
+    @include suffix(0.5 of 12);
   }
 
   .page__inner-wrap {
@@ -49,6 +49,10 @@
 }
 
 .page__content {
+
+  > h1[id] {
+    scroll-margin-top: calc(#{$masthead-height} + 1em);
+  }
 
   h2 {
     padding-bottom: 0.5em;
@@ -82,6 +86,13 @@
         box-shadow: 0 0 10px rgba(#000, 0.25);
       }
     }
+  }
+
+  .text-accent {
+    color: #c0392b;
+    font-family: $serif;
+    font-size: 1.05em;
+    font-weight: 600;
   }
 
   dt {

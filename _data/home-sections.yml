@@ -1,0 +1,15 @@
+- title: "About"
+  anchor: about-me
+
+- title: "News"
+  anchor: recent-news
+
+- title: "Publications"
+  anchor: publications
+
+- title: "Teaching"
+  anchor: teaching
+
+# Uncomment after adding a "Talks" section to about.md:
+# - title: "Talks"
+#   anchor: talks

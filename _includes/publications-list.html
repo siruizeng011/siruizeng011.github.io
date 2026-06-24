@@ -1,0 +1,21 @@
+{% include base_path %}
+
+{% if site.author.googlescholar %}
+  <div class="wordwrap">You can also find my articles on <a href="{{ site.author.googlescholar }}">my Google Scholar profile</a>.</div>
+{% endif %}
+
+{% for post in site.publications reversed %}
+  {% include publication-card.html post=post %}
+{% endfor %}
+
+{% assign has_pdf_teaser = false %}
+{% for post in site.publications %}
+  {% assign post_teaser = post.teaser | default: post.header.teaser %}
+  {% if post_teaser and post_teaser contains '.pdf' %}
+    {% assign has_pdf_teaser = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+{% if has_pdf_teaser %}
+  <script src="{{ base_path }}/assets/js/pub-figure.js" defer></script>
+{% endif %}
